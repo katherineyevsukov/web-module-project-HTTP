@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import axios from "axios";
 
 const initialFormValues = {
@@ -13,6 +13,7 @@ const initialFormValues = {
 
 export default function AddMovieForm(props) {
   console.log(props);
+  const { push } = useHistory()
 
   const [formValues, setFormValues] = useState(initialFormValues);
 
@@ -31,7 +32,7 @@ export default function AddMovieForm(props) {
       .post("http://localhost:5000/api/movies", newMovie)
       .then((res) => {
         props.setMovies(res.data);
-        props.history.push("/movies");
+        push("/movies");
       })
       .catch((err) => {
         console.log(err);
