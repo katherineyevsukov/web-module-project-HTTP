@@ -27,6 +27,9 @@ const Movie = (props) => {
             props.setMovies(props.movies.filter(mov => mov.id !== movie.id))
             push('/movies')
         })
+        .catch(err => {
+            console.err(err)
+        })
     }
 
     return(<div className="modal-page col">
